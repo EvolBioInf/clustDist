@@ -3,8 +3,8 @@ export VERSION = $(shell bash ../scripts/version.sh) # The single, trailing blan
 export DATE    = $(shell bash ../scripts/date.sh) #    The single, trailing blank is essential
 CFLAGS         = -DVERSION=\"$(VERSION)\" -DDATE=\"$(DATE)\" -O3 -Wall -Wshadow -pedantic -std=gnu99 -g -I../common/ -L../common/ #-pg
 
-SRCFILES  = clustDist.c interface.c
-OBJFILES  = clustDist.o interface.o
+SRCFILES  = clustDist.c interface.c distTree.c newick.c neighbor.c
+OBJFILES  = clustDist.o interface.o distTree.o newick.o neighbor.o
 LIBS      = -lcommon -lm
 EXECFILE  = clustDist
 

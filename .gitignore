@@ -5,6 +5,8 @@ doc/*.aux
 doc/*.dvi
 doc/*.log
 doc/*.pdf
+doc/clustDist.bbl
+doc/clustDist.blg
 doc/date.tex
 doc/version.tex
 src/clustDist

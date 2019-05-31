@@ -6,8 +6,8 @@ all:
 	printf "%s\n" $(VERSION) > version.tex
 	printf "%s\n" $(DATE)    > date.tex
 	latex  $(PROG)
-	# bibtex $(PROG)
-	# latex  $(PROG)
+	bibtex $(PROG)
+	latex  $(PROG)
 	latex  $(PROG)
 	dvipdf $(PROG)
 clean:	

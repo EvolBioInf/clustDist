@@ -1,5 +1,5 @@
-./clustDist > tmp.out
-DIFF=$(diff tmp.out ../data/clustDist.out)
+./clustDist ../data/eco29.dist > tmp.out
+DIFF=$(diff tmp.out ../data/eco29.nwk)
 if [ "$DIFF" == "" ] 
 then
     printf "Test(clustDist)\tpass\n"

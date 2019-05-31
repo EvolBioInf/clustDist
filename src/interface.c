@@ -17,8 +17,8 @@ Args *newArgs() {
   Args *args = (Args *)emalloc(sizeof(Args));
   args->h   = 0;
   args->v   = 0;
+  args->u   = 0;
   args->err = 0;
-  args->i   = DEFAULT_I;
   return args;
 }
 
@@ -28,18 +28,21 @@ void freeArgs(Args *args) {
 
 Args *getArgs(int argc, char *argv[]) {
   int c;
-  char *optString = "hvi:";
+  char *optString = "hvu";
   Args *args = newArgs();
 
   while ((c = getopt(argc, argv, optString)) != -1) {
     switch(c) {
-    case 'i': /* iterations */
-      args->i = atoi(optarg);
+    case 'u': /* upgma          */
+      args->u = 1;
       break;
-    case 'h': /* help       */
+    case 'm': /* print matrices */
+      args->m = 1;
+      break;
+    case 'h': /* help           */
       args->h = 1;
       break;
-    case 'v': /* version    */
+    case 'v': /* version        */
       args->v = 1;
       break;
     case '?':
@@ -63,10 +66,11 @@ Args *getArgs(int argc, char *argv[]) {
 
 void printUsage() {
   printf("Usage: %s [options] [inputFiles]\n", progname());
-  printf("<DESCRIPTION>\n");
-  printf("Example: %s -i 2\n", progname());
+  printf("Cluster distances into phylogenies\n");
+  printf("Example: %s my.dist\n", progname());
   printf("Options:\n");
-  printf("\t[-i <NUM> iterations; default: %d]\n", DEFAULT_I);
+  printf("\t[-u UPGMA algorithm; default: neighbor-joining]\n");
+  printf("\t[-m print iterated distance matrix; default: just print tree]\n");
   printf("\t[-h print this help message and exit]\n");
   printf("\t[-v print version & program information and exit]\n");
   exit(0);

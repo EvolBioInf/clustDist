@@ -15,14 +15,23 @@
 \textheight=23cm
 \begin{document}
 
-\title{\texttt{clustDist} \input{version}: \emph{Description}}
+\title{\texttt{clustDist} \input{version}: Cluster Distances into Phylogenies}
 \author{\input{author}}
 \input{date}
 \date{\displaydate{tagDate}}
 \maketitle
 
 \section{Introduction} 
-\emph{Introduction}
+Of the many methods available for phylogeny reconstruction, distance
+methods are perhaps the simplest. They take as input a matrix of
+pairwise distances and generate as output the corresponding cluster
+diagram, or phylogeny~\citep{fel04:inf}. The program
+\texttt{clustDist} implements two distance methods, UPGMA and neighbor
+joining. It takes as input a distance matrix in PHYLIP format and
+returns a tree in Newick format~\citep{fel05:phy}. The following
+section explains how to compile and test \texttt{clustDist}. In the
+subsequent tutorial the program is briefly demonstrated.
+
 
 \section{Getting Started}
 The program \texttt{clustDist} was written in C on a computer running Linux.
@@ -57,6 +66,45 @@ doc/clustDist.pdf
 \end{verbatim}
 \end{itemize}
 
+\section{Tutorial}
+\begin{itemize}
+  \item Cluster the example distances between 29 \emph{E. coli} and
+    \emph{Shigella} genomes.
+\begin{verbatim}
+clustDist data/eco29.dist
+\end{verbatim}
+This generates the tree in Newick format:
+\begin{verbatim}
+(CP000038:0.004996,(CP000036:0.001405,CP001063:0.001640):
+0.004064,((CP000800:0.003409,(AP009240:0.003402,CU928160:
+0.002841):0.000422):0.002092,((CP000266:0.000595,(AE005674:
+0.000242,AE014073:0.000198):0.000501):0.006714,(((CU928163:
+0.010177,((FM180568:0.006369,((CU928162:0.004850,(CU928161:
+0.000859,(CP000243:0.000558,CP000468:0.000618):0.000416):
+0.003651):0.000241,(AE014075:0.004461,CP000247:0.004615):
+0.000195):0.001596):0.006307,(CP000970:0.007222,CU928164:
+0.006909):0.003175):0.001450):0.003632,(CP000034:0.007614,
+(CP001846:0.001439,(AE005174:0.000123,BA000007:0.000425):
+0.001037):0.005633):0.002246):0.001902,(((CP000948:0.000021,
+CP001396:0.000099):0.000018,(AP009048:0.000008,U00096:
+0.0):0.000008):0.004598,(CP000802:0.002850,CP000946:
+0.003430):0.001083):0.001768):0.000747):0.000492):0.000335);
+\end{verbatim}
+\item Draw this tree using
+  \texttt{new2view}\footnote{\texttt{https://github.com/evolbioinf/new2view}}
+\begin{verbatim}
+clustDist data/eco29.dist | new2view
+\end{verbatim}
+to obtain Figure~\ref{fig:tre}.
+\end{itemize}
+
+\begin{figure}
+  \begin{center}
+    \input{eco29}
+  \end{center}
+  \caption{Phylogeny of 29 \textit{E. coli}/\textit{Shigella} strains.}\label{fig:tre}
+\end{figure}
+
 \section{Change Log}
 Please use
 \begin{verbatim}
@@ -64,6 +112,6 @@ git log
 \end{verbatim}
 to list the change history.
 
-%% \bibliography{ref}
+\bibliography{ref}
 \end{document}
 
